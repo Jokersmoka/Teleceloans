@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Approved - Telecel Loans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #E42320;
+            --red-dark: #c01c1a;
+            --green: #10B981;
+            --green-light: #ecfdf5;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .success-header {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .success-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: moveBackground 20s linear infinite;
+        }
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        .success-icon svg {
+            width: 45px;
+            height: 45px;
+        }
+        .success-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 0.6s ease-out 0.2s both;
+        }
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .success-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 0.6s ease-out 0.3s both;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .info-card {
+            background: var(--green-light);
+            border: 1px solid #a7f3d0;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out 0.4s both;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .info-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .info-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1e2937;
+        }
+        .info-value span {
+            color: var(--green);
+        }
+        .details-list {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out 0.5s both;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+        .detail-value {
+            color: #1e2937;
+            font-weight: 700;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: slideIn 0.5s ease-out 0.6s both;
+        }
+        .btn-primary {
+            width: 100%;
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .btn-secondary {
+            width: 100%;
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-secondary:hover {
+            background: var(--green-light);
+        }
+        .footer-text {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            padding: 0 25px 20px;
+            line-height: 1.6;
+        }
+        .footer-text a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            pointer-events: none;
+        }
+        @media (max-width: 480px) {
+            .container { border-radius: 20px; }
+            .success-title { font-size: 24px; }
+            .success-icon { width: 70px; height: 70px; }
+            .content { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-header">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17l-5-5" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h1 class="success-title">Application Approved!</h1>
+            <p class="success-subtitle">Your loan has been successfully processed</p>
+        </div>
+
+        <div class="content">
+            <div class="info-card">
+                <div class="info-label">💰 Loan Amount Approved</div>
+                <div class="info-value"><span id="approvedAmount">5,000</span> GHS</div>
+            </div>
+
+            <div class="details-list">
+                <div class="detail-item">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value" style="color: var(--green);">✓ Active</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Loan Duration</span>
+                    <span class="detail-value" id="loanDuration">3 Months</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Monthly Payment</span>
+                    <span class="detail-value" id="monthlyPayment">1,667 GHS</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Interest Rate</span>
+                    <span class="detail-value">12% p.a.</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Disbursement Date</span>
+                    <span class="detail-value" id="disbursementDate">Today</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="viewLoanDetails()">View Loan Details</button>
+                <button class="btn-secondary" onclick="downloadReceipt()">Download Receipt</button>
+            </div>
+
+            <div class="footer-text">
+                Your funds will be transferred to your Telecel Cash account within 24 hours. For support, contact <a href="#">support@telecelloans.com</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const confettiCount = 50;
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = ['#10B981', '#059669', '#34d399', '#6ee7b7'][Math.floor(Math.random() * 4)];
+                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear forwards`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(${window.innerHeight + 10}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function loadLoanDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const amount = params.get('amount') || '50,000';
+            const duration = params.get('duration') || '3';
+            
+            document.getElementById('approvedAmount').textContent = amount;
+            document.getElementById('loanDuration').textContent = duration + ' Months';
+            
+            const monthlyPayment = Math.round(parseInt(amount) / parseInt(duration));
+            document.getElementById('monthlyPayment').textContent = monthlyPayment.toLocaleString() + ' GHS';
+            
+            const today = new Date();
+            const disbursementDate = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+            document.getElementById('disbursementDate').textContent = disbursementDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function viewLoanDetails() {
+            alert('Redirecting to loan dashboard...');
+        }
+
+        function downloadReceipt() {
+            alert('Receipt download started...');
+        }
+
+        // Initialize
+        loadLoanDetails();
+        createConfetti();
+    </script>
+</body>
+</html>

