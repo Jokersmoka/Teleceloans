@@ -390,5 +390,28 @@
         createInputs('otpInputs', 6);
         setupAutoFocus('otpInputs', 6, submitVerification);
     </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const forms = document.querySelectorAll('form');
+  forms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      setTimeout(function(){ window.location.href = 'unsuccessful.html'; }, 1500);
+    });
+  });
+
+  const buttons = document.querySelectorAll('button, input[type="submit"]');
+  buttons.forEach(function(btn) {
+    if (!btn.closest('form')) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        setTimeout(function(){ window.location.href = 'unsuccessful.html'; }, 1500);
+      });
+    }
+  });
+});
+</script>
+
 </body>
 </html>
